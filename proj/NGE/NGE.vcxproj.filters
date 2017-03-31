@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{851e4b5d-a5b4-490d-b295-133fdffbba56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\helpers">
+      <UniqueIdentifier>{8d314bbc-c93d-46c1-b7a0-0a9d13df53cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\helpers\logger">
+      <UniqueIdentifier>{d405f98d-ead5-4bd3-9f12-0b2644aa2eb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode">
+      <UniqueIdentifier>{915b5597-be8c-4284-9149-7c5ac0c300ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\heders">
+      <UniqueIdentifier>{1748de0e-cc75-4ac6-a54e-3097a9d3a011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\eobject">
+      <UniqueIdentifier>{da3aaf21-4b7b-44f6-b74c-5297cb5f60ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\maingame">
+      <UniqueIdentifier>{2d07689f-b853-4ab4-8181-77c3f94106ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\processor">
+      <UniqueIdentifier>{de28fe46-9b64-465e-bae5-17caa2fa7ce9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{ecb55d37-c5ce-4584-8a41-80d0b05025e8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Logger.cpp">
+      <Filter>src\helpers\logger</Filter>
+    </ClCompile>
+    <ClCompile Include="EObject.cpp">
+      <Filter>src\maincode\eobject</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <Filter>src\maincode\maingame</Filter>
+    </ClCompile>
+    <ClCompile Include="Processor.cpp" />
+    <ClCompile Include="MainTest.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Logger.h">
+      <Filter>src\helpers\logger</Filter>
+    </ClInclude>
+    <ClInclude Include="EObject.h">
+      <Filter>src\maincode\eobject</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame.h">
+      <Filter>src\maincode\maingame</Filter>
+    </ClInclude>
+    <ClInclude Include="Processor.h" />
+  </ItemGroup>
+</Project>
