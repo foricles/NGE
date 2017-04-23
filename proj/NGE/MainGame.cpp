@@ -2,30 +2,77 @@
 
 
 
-MainGame::MainGame()
+EMainGame::EMainGame()
+	: ESystem(SysType::GAMECLASS)
+	, oGameName(nullptr)
 {
+	oGameName = new std::string("NGE game");
 }
 
 
-MainGame::~MainGame()
+EMainGame::~EMainGame()
 {
+	delete oGameName;
 }
 
-bool MainGame::Initialize(){
+void EMainGame::setGameName(const std::string & name)
+{
+	oGameName->assign(name);
+}
+
+std::string & EMainGame::getGameName() const
+{
+	return *oGameName;
+}
+
+EWindow * EMainGame::window()
+{
+	return dynamic_cast<EWindow*>(getSystem(SysType::WINDOW));
+}
+
+EInput * EMainGame::input()
+{
+	return dynamic_cast<EInput*>(getSystem(SysType::INPUT));
+}
+
+ETime * EMainGame::time()
+{
+	return dynamic_cast<ETime*>(getSystem(SysType::TIME));
+}
+
+GameObjectManager * EMainGame::gameObject()
+{
+	return dynamic_cast<GameObjectManager*>(getSystem(SysType::OBJMANAGER));;
+}
+
+void EMainGame::appSystems(std::map<SysType, ESystem*>* sys)
+{
+	setAppSystems(sys);
+}
+
+
+//-------------------------------------------------------
+bool EMainGame::Initialize()
+{
 	return false;
 }
 
-void MainGame::Begin(){
+void EMainGame::Begin()
+{
 }
 
-void MainGame::Update(){
+void EMainGame::Update()
+{
 }
 
-void MainGame::PostUpdate(){
+void EMainGame::PostUpdate()
+{
 }
 
-void MainGame::FixUpdate(){
+void EMainGame::FixUpdate()
+{
 }
 
-void MainGame::End(){
+void EMainGame::End()
+{
 }

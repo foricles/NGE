@@ -1,12 +1,36 @@
 #ifndef _MAINGAME_
 #define _MAINGAME_
 
-class MainGame
-{
-public:
-	MainGame();
-	virtual ~MainGame();
+#include <string>
 
+#include "System.h"
+#include "Window.h"
+#include "Input.h"
+#include "GameObjectManager.h"
+#include "Time.h"
+
+class EMainGame : private ESystem
+{
+private:
+	std::string *oGameName;	
+
+	bool initialize() { return false; };
+	bool reset() { return false; };
+	bool update(GameState *state) { return false; };
+public:
+	EMainGame();
+	virtual ~EMainGame();
+
+	void setGameName(const std::string &name);
+	std::string &getGameName()const;
+
+	EWindow *window();
+	EInput *input();
+	ETime *time();
+	GameObjectManager *gameObject();
+	
+	void appSystems(std::map<SysType, ESystem*> *sys);
+//--------------------------------------------------------
 	// Initialize game
 	virtual bool Initialize();
 

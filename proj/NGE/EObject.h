@@ -9,7 +9,7 @@ public:
 	EObject();
 	~EObject();
 
-	inline GLuint getObjectId();
+	virtual inline GLuint getObjectId();
 private:
 	static GLuint oCounter;
 

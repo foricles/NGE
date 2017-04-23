@@ -1,0 +1,18 @@
+#version 330 core
+
+in vec2 pixPos;
+in vec4 pixColor;
+in vec2 pixUW;
+
+out vec4 FragColor;
+
+void main()
+{	
+	vec2 a = pixPos;
+	vec2 b = pixUW;	
+	float ins = 1.0 / (length(pixPos - vec2(100.0,100.0))*0.1);
+	FragColor.r = ((sin(pixPos.x)+1)/2) * ins;
+	FragColor.g = ((sin(pixPos.y)+1)/2) * ins;
+	FragColor.b = ((cos(pixPos.x)+1)/2) * ins;
+	FragColor.a = pixColor.a;
+}

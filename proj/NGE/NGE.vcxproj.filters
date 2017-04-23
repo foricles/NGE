@@ -22,11 +22,47 @@
     <Filter Include="src\maincode\maingame">
       <UniqueIdentifier>{2d07689f-b853-4ab4-8181-77c3f94106ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\maincode\processor">
-      <UniqueIdentifier>{de28fe46-9b64-465e-bae5-17caa2fa7ce9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{ecb55d37-c5ce-4584-8a41-80d0b05025e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\systems">
+      <UniqueIdentifier>{e3c03cbe-ad19-484f-8f62-dd1c1ea8ab4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\systems\system">
+      <UniqueIdentifier>{7f747f84-c483-46f4-acd7-2990a9b18298}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\systems\window">
+      <UniqueIdentifier>{1167fbd6-02ee-40e8-a1f2-c8d8605c5b05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\systems\input">
+      <UniqueIdentifier>{f806f95b-94b1-4822-92ae-471ff62c3305}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\application">
+      <UniqueIdentifier>{de28fe46-9b64-465e-bae5-17caa2fa7ce9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\gameobjects">
+      <UniqueIdentifier>{b693edb3-1ee0-40dd-981e-f399830533a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\systems\render2d">
+      <UniqueIdentifier>{1ea2aac7-9fb8-4333-b25c-c6778e30c086}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\heders\transform">
+      <UniqueIdentifier>{aa75a489-44b4-47d0-b99f-83a342ea78de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\gameobjects\sprite">
+      <UniqueIdentifier>{4990326d-1168-465c-b063-eda0b417c910}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\systems\gameobjmanager">
+      <UniqueIdentifier>{5888a89d-fe8d-4f1e-885b-641462b8230a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\material">
+      <UniqueIdentifier>{300b3330-4425-4c58-9e0a-23413ed8c109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\shader">
+      <UniqueIdentifier>{e5bb7483-9c76-4c01-8bec-2a387417456b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\maincode\systems\time">
+      <UniqueIdentifier>{1494885d-4049-4b0f-80b3-17dacfd1c6be}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -39,9 +75,44 @@
     <ClCompile Include="MainGame.cpp">
       <Filter>src\maincode\maingame</Filter>
     </ClCompile>
-    <ClCompile Include="Processor.cpp" />
     <ClCompile Include="MainTest.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Buber.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
+      <Filter>src\maincode\systems\system</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>src\maincode\systems\window</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>src\maincode\systems\input</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>src\maincode\application</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>src\maincode\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Render2D.cpp">
+      <Filter>src\maincode\systems\render2d</Filter>
+    </ClCompile>
+    <ClCompile Include="transform.cpp">
+      <Filter>src\heders\transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>src\maincode\gameobjects\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>src\maincode\systems\gameobjmanager</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>src\maincode\material</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>src\maincode\systems\time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +125,50 @@
     <ClInclude Include="MainGame.h">
       <Filter>src\maincode\maingame</Filter>
     </ClInclude>
-    <ClInclude Include="Processor.h" />
+    <ClInclude Include="Buber.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>src\maincode\systems\system</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>src\maincode\systems\window</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>src\maincode\systems\input</Filter>
+    </ClInclude>
+    <ClInclude Include="SysEnumers.h">
+      <Filter>src\heders</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>src\maincode\application</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>src\maincode\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Render2D.h">
+      <Filter>src\maincode\systems\render2d</Filter>
+    </ClInclude>
+    <ClInclude Include="Structs.h">
+      <Filter>src\heders</Filter>
+    </ClInclude>
+    <ClInclude Include="transform.h">
+      <Filter>src\heders\transform</Filter>
+    </ClInclude>
+    <ClInclude Include="objkinds.h">
+      <Filter>src\maincode\gameobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>src\maincode\gameobjects\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>src\maincode\systems\gameobjmanager</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>src\maincode\material</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>src\maincode\systems\time</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

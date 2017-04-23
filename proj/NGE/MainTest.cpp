@@ -1,10 +1,17 @@
-#include "Logger.h"
-#include "Processor.h"
+#include "Buber.h"
+#include "Application.h"
+#include "Shader.h"
 
-int main()
+int main(int argc, char** argv)
 {
-	
+	Application *app = new Application();
+	Buber *buber = new Buber();
+	GLuint exitCode;
 
-	std::system("pause");
-	return 0;
+	app->setGameClass(buber);
+	exitCode = app->run();
+
+	delete buber;
+	delete app;
+	return exitCode;
 }
