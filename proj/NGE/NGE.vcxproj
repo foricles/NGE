@@ -137,7 +137,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Buber.cpp" />
     <ClCompile Include="EObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="Input.cpp" />

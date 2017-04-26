@@ -24,9 +24,9 @@ public:
 	void setGameName(const std::string &name);
 	std::string &getGameName()const;
 
-	EWindow *window();
-	EInput *input();
-	ETime *time();
+	EWindow *Window();
+	EInput *Input();
+	ETime *Time();
 	GameObjectManager *gameObject();
 	
 	void appSystems(std::map<SysType, ESystem*> *sys);

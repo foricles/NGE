@@ -10,19 +10,19 @@
 class GameObjectManager : public ESystem
 {
 private:
-	std::vector<RenderObject*> oGameObjects;
+	std::vector<Sprite*> oGameSprites;
 public:
 	GameObjectManager();
 	~GameObjectManager();
 
-	virtual std::vector<RenderObject*>::iterator begin();
-	virtual std::vector<RenderObject*>::iterator end();
+	virtual std::vector<Sprite*>::iterator begin();
+	virtual std::vector<Sprite*>::iterator end();
 
 	virtual RenderObject *getObjectByName(const std::string name);
 	virtual RenderObject *getObjectByTag(const std::string tag);
 	virtual RenderObject *getObjectById(GLuint id);
 
-	virtual int getSize() { return oGameObjects.size(); }
+	virtual int getSize() { return oGameSprites.size(); }
 
 	virtual Sprite *createSprite();
 

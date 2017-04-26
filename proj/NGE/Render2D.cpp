@@ -8,7 +8,6 @@ ERender2D::ERender2D()
 	, oIdVBO(0)
 	, oIdVAO(0)
 {
-
 }
 
 ERender2D::~ERender2D()
@@ -56,25 +55,42 @@ bool ERender2D::initialize()
 		if (oIdVAO == 0)
 			glGenVertexArrays(1, &oIdVAO);
 
+		glBindVertexArray(oIdVAO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, oIdVBO);
+
+		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(1);
+		glEnableVertexAttribArray(2);
+
+		glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(vert), (void*)offsetof(vert, pos));
+		glVertexAttribPointer(1, 4, GL_FLOAT, GL_TRUE, sizeof(vert), (void*)offsetof(vert, col));
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vert), (void*)offsetof(vert, uv));
+
+		glBufferData(GL_ARRAY_BUFFER, MAX_VERTEX * sizeof(vert), nullptr, GL_DYNAMIC_DRAW);
+
+		glBindVertexArray(0);
+
 		ok = true;
-	}
 
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	oActiveWnd = dynamic_cast<EWindow*>(getSystem(SysType::WINDOW));
-	oObjects = dynamic_cast<GameObjectManager*>(getSystem(SysType::OBJMANAGER));
-	if (oActiveWnd == nullptr)
-	{
-		ok = false;
-		Logger::fatalError("Window is not set for render.");
-	}
-	if (oObjects == nullptr)
-	{
-		ok = false;
-		Logger::fatalError("Object pool is not set for render.");
-	}
+		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	cam = glm::ortho(0.0f, (float)oActiveWnd->getWidth(), 0.0f, (float)oActiveWnd->getHeigth());
+		oActiveWnd = dynamic_cast<EWindow*>(getSystem(SysType::WINDOW));
+		oObjects = dynamic_cast<GameObjectManager*>(getSystem(SysType::OBJMANAGER));
+		if (oActiveWnd == nullptr)
+		{
+			ok = false;
+			Logger::fatalError("Window is not set for render.");
+		}
+		if (oObjects == nullptr)
+		{
+			ok = false;
+			Logger::fatalError("Object pool is not set for render.");
+		}
+
+		cam = glm::ortho(0.0f, (float)oActiveWnd->getWidth(), 0.0f, (float)oActiveWnd->getHeigth());
+	}
 
 	return ok;
 }
@@ -86,20 +102,20 @@ bool ERender2D::reset()
 
 bool ERender2D::update(GameState * state)
 {
-	bool ok = true;
+	if (oObjects->getSize() > MAX_SPRITE)
+		return false;
 
-	std::vector<vert> vertex;
+	bool ok = true;
 	int iter(-1);
 
-	vertex.resize(oObjects->getSize() * 6);
+	oVertexes.resize(oObjects->getSize() * 6);
 	Material *m1 = nullptr;
 
 	for (auto obj = oObjects->begin(); obj != oObjects->end(); ++obj)
 	{
-		Sprite *sprite = dynamic_cast<Sprite*>(*obj);
+		Sprite *sprite = (*obj);
 		if (sprite != nullptr)
 		{
-			sprite->transform().apply();
 			vert lt = sprite->leftTop();
 			vert rd = sprite->rightDown();
 			vert ld; 
@@ -111,43 +127,36 @@ bool ERender2D::update(GameState * state)
 			rt.pos = glm::vec4(rd.pos.x, lt.pos.y, 0.0, 1.0);
 			rt.uv  = glm::vec2(rd.uv.x, lt.uv.y);
 
-			vertex[++iter] = ld;
-			vertex[++iter] = rd;
-			vertex[++iter] = lt;
-
-			vertex[++iter] = lt;
-			vertex[++iter] = rd;
-			vertex[++iter] = rt;
+			oVertexes[++iter] = ld;
+			oVertexes[++iter] = rd;
+			oVertexes[++iter] = lt;
+			
+			oVertexes[++iter] = lt;
+			oVertexes[++iter] = rd;
+			oVertexes[++iter] = rt;
 
 			m1 = sprite->getMaterial();
 		}
 	}
 
-	begin();
+	if (m1 != nullptr)
+	{
+		begin();
 		m1->setVertexShader("Shaders/vertex.vdr");
 		m1->setFragmentShader("Shaders/fragment.fdr");
 		m1->compile();
-	m1->getMaterialShader()->use();
+		m1->getMaterialShader()->use();
 		m1->apply(cam);
 		glBindVertexArray(oIdVAO);
 
-			glBindBuffer(GL_ARRAY_BUFFER, oIdVBO);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, oVertexes.size() * sizeof(vert), oVertexes.data());
 
-			glEnableVertexAttribArray(0);
-			glEnableVertexAttribArray(1);
-			glEnableVertexAttribArray(2);
-
-			glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(vert), (void*)offsetof(vert, pos));
-			glVertexAttribPointer(1, 4, GL_FLOAT, GL_TRUE,  sizeof(vert), (void*)offsetof(vert, col));
-			glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vert), (void*)offsetof(vert, uv));
-
-			glBufferData(GL_ARRAY_BUFFER, vertex.size() * sizeof(vert), vertex.data(), GL_DYNAMIC_DRAW);
-
-			glDrawArrays(GL_TRIANGLES, 0, vertex.size());
+		glDrawArrays(GL_TRIANGLES, 0, oVertexes.size());
 
 		glBindVertexArray(0);
-	m1->getMaterialShader()->unuse();
-	end();
+		m1->getMaterialShader()->unuse();
+		end();
+	}
 
 	return ok;
 }

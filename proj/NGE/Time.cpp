@@ -12,6 +12,8 @@ ETime::~ETime()
 bool ETime::initialize()
 {
 	oFPS = 0.0;
+	oFpsBuff = 0.0;
+	oFpsCounter = 0;
 	oDeltaTime = 0.0;
 	oBeginTime = clock();
 	oLastTime = oBeginTime;
@@ -26,7 +28,17 @@ bool ETime::reset()
 bool ETime::update(GameState * state)
 {
 	oDeltaTime = ((clock() - oLastTime) / CLOCKS_PER_SEC);
-	oFPS = 1.0 / oDeltaTime;
+	if (oFpsCounter >= 27)
+	{
+		oFPS = 1/(oFpsBuff / 27.0);
+		oFpsCounter = 0;
+		oFpsBuff = 0.0;
+	}
+	else
+	{
+		oFpsBuff += oDeltaTime;
+		++oFpsCounter;
+	}
 	oLastTime = clock();
 	return true;
 }

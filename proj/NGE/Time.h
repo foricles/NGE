@@ -22,6 +22,9 @@ private:
 	double oLastTime;
 
 	double oFPS;
+	double oFpsBuff;
+	byte oFpsCounter;
+
 	double oDeltaTime;
 
 	double oBeginTime;

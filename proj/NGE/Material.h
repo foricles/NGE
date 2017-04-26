@@ -35,7 +35,7 @@ private:
 	std::string oTitle;
 	std::vector<UniformAttribute*> oUniformVaribles;
 
-	Shader    *oShader;
+	Shader *oShader;
 
 	std::string oVertexPath;
 	std::string oFragmentPath;

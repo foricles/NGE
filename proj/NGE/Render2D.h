@@ -7,6 +7,8 @@
 #include <gtc\matrix_transform.hpp>
 #include <string>
 #include <time.h>
+#include <thread>
+#include <mutex>
 
 #include "Structs.h"
 
@@ -19,7 +21,11 @@
 class ERender2D : public ESystem
 {
 private:
+	std::vector<vert> oVertexes;
+
 	glm::vec4 oBackColor;
+	const int MAX_SPRITE = 60000;
+	const int MAX_VERTEX = MAX_SPRITE * 6;
 public:
 	ERender2D();
 	virtual ~ERender2D();

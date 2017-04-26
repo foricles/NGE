@@ -8,37 +8,37 @@ GameObjectManager::GameObjectManager()
 
 GameObjectManager::~GameObjectManager()
 {
-	for (auto obj = oGameObjects.begin(); obj != oGameObjects.end(); ++obj)
+	for (auto obj = oGameSprites.begin(); obj != oGameSprites.end(); ++obj)
 		delete (*obj);
-	oGameObjects.clear();
+	oGameSprites.clear();
 }
 
-std::vector<RenderObject*>::iterator GameObjectManager::begin()
+std::vector<Sprite*>::iterator GameObjectManager::begin()
 {
-	return oGameObjects.begin();
+	return oGameSprites.begin();
 }
-std::vector<RenderObject*>::iterator GameObjectManager::end()
+std::vector<Sprite*>::iterator GameObjectManager::end()
 {
-	return oGameObjects.end();
+	return oGameSprites.end();
 }
 
 RenderObject * GameObjectManager::getObjectByName(const std::string name)
 {
-	for(auto obj = oGameObjects.begin(); obj != oGameObjects.end(); ++obj)
+	for(auto obj = oGameSprites.begin(); obj != oGameSprites.end(); ++obj)
 		if(((*obj)->getName() == name) && (*obj)->activeSelf())
 			return (*obj);
 	return nullptr;
 }
 RenderObject * GameObjectManager::getObjectByTag(const std::string tag)
 {
-	for(auto obj = oGameObjects.begin(); obj != oGameObjects.end(); ++obj)
+	for(auto obj = oGameSprites.begin(); obj != oGameSprites.end(); ++obj)
 		if(((*obj)->getTag() == tag) && (*obj)->activeSelf())
 			return (*obj);
 	return nullptr;
 }
 RenderObject * GameObjectManager::getObjectById(GLuint id)
 {
-	for(auto obj = oGameObjects.begin(); obj != oGameObjects.end(); ++obj)
+	for(auto obj = oGameSprites.begin(); obj != oGameSprites.end(); ++obj)
 		if(((*obj)->getObjectId() == id) && (*obj)->activeSelf())
 			return (*obj);
 	return nullptr;
@@ -47,14 +47,14 @@ RenderObject * GameObjectManager::getObjectById(GLuint id)
 Sprite * GameObjectManager::createSprite()
 {
 	Sprite *sprite = nullptr;
-	for(auto obj = oGameObjects.begin(); obj != oGameObjects.end(); ++obj)
+	for(auto obj = oGameSprites.begin(); obj != oGameSprites.end(); ++obj)
 		if(!(*obj)->activeSelf())
-			sprite = dynamic_cast<Sprite*>(*obj);
+			sprite = (*obj);
 
 	if(sprite == nullptr)
 	{
 		sprite = new Sprite();
-		oGameObjects.push_back(sprite);
+		oGameSprites.push_back(sprite);
 	}
 	return sprite;
 }

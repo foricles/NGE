@@ -1,51 +1,38 @@
 #include "transform.h"
 
 Transform::Transform()
-	: trmtx(1.0f)
-	, posIsChange(false)
-	, scaIsChange(false)
+	: trmtx(nullptr)
+	, oPos(nullptr)
 {
-	
+	trmtx = new glm::mat4(1.0f);
+	oPos = new glm::vec3(1.0f);
 }
 
-void Transform::apply()
+Transform::~Transform()
 {
-	if (posIsChange)
-	{
-		trmtx = glm::translate(trmtx, oPos);
-		posIsChange = false;
-	}
-	if (scaIsChange)
-	{
-		trmtx = glm::scale(trmtx, oScl);
-		scaIsChange = false;
-	}
+	delete trmtx;
+	delete oPos;
 }
 
 const glm::mat4 & Transform::getMatrix() const
 {
-	return trmtx;
+	return *trmtx;
 }
 const glm::vec3 & Transform::getPosition() const
 {
-	return oPos;
-}
-const glm::vec3 & Transform::getScale() const
-{
-	return oScl;
+	return *oPos;
 }
 
 void Transform::operator=(const Transform & tr)
 {
-	trmtx = tr.trmtx;
-	oPos = tr.oPos;
-	oScl = tr.oScl;
+	*trmtx = *tr.trmtx;
+	*oPos = *tr.oPos;
 }
 
 void Transform::translate(const glm::vec3 & vec)
 {
-	oPos += vec;
-	posIsChange = true;
+	*oPos += vec;
+	*trmtx = glm::translate(*trmtx, *oPos);
 }
 #pragma region translate_overloaded_metods
 void Transform::translate(GLfloat x, GLfloat y)
@@ -64,8 +51,7 @@ void Transform::translate(GLfloat x, GLfloat y)
 
 void Transform::scale(const glm::vec3 & vec)
 {
-	oScl = vec;
-	scaIsChange = true;
+	*trmtx = glm::scale(*trmtx, vec);
 }
 #pragma region scale_overloaded_metods
 	void Transform::scale(GLfloat x, GLfloat y)

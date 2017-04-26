@@ -78,9 +78,6 @@
     <ClCompile Include="MainTest.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Buber.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="System.cpp">
       <Filter>src\maincode\systems\system</Filter>
     </ClCompile>

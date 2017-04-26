@@ -11,10 +11,9 @@ struct Transform
 {
 public:
 	Transform();
-	void apply();
+	~Transform();
 	const glm::mat4 &getMatrix() const;
 	const glm::vec3 &getPosition() const;
-	const glm::vec3 &getScale() const;
 
 	void operator=(const Transform &tr);
 
@@ -33,11 +32,8 @@ public:
 	void rotate(GLfloat angle, const glm::vec2 &vec);
 	void rotate(GLfloat angle, const glm::vec3 &vec);
 private:
-	glm::mat4 trmtx;
-	glm::vec3 oPos;
-	glm::vec3 oScl;
-	bool posIsChange;
-	bool scaIsChange;
+	glm::mat4 *trmtx;
+	glm::vec3 *oPos;
 };
 
 #endif //_TRANSF_H_

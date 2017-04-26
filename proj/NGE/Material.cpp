@@ -68,9 +68,6 @@ void Material::compile()
 	if (!oWasCompile)
 	{
 		oShader->compile(oVertexPath, oFragmentPath);
-		//oShader->addAttrib("vPos");
-		//oShader->addAttrib("vColor");
-		//oShader->addAttrib("vUW");
 		oShader->link();
 		oWasCompile = true;
 	}

@@ -25,17 +25,17 @@ std::string & EMainGame::getGameName() const
 	return *oGameName;
 }
 
-EWindow * EMainGame::window()
+EWindow * EMainGame::Window()
 {
 	return dynamic_cast<EWindow*>(getSystem(SysType::WINDOW));
 }
 
-EInput * EMainGame::input()
+EInput * EMainGame::Input()
 {
 	return dynamic_cast<EInput*>(getSystem(SysType::INPUT));
 }
 
-ETime * EMainGame::time()
+ETime * EMainGame::Time()
 {
 	return dynamic_cast<ETime*>(getSystem(SysType::TIME));
 }
