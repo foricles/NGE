@@ -35,6 +35,9 @@ void ERender2D::begin()
 
 void ERender2D::end()
 {
+	for (auto pie = oRenderObjs.begin(); pie != oRenderObjs.end(); ++pie)
+		delete (*pie);
+	oRenderObjs.clear();
 	oActiveWnd->updateBuffer();
 }
 
@@ -102,59 +105,59 @@ bool ERender2D::reset()
 
 bool ERender2D::update(GameState * state)
 {
-	if (oObjects->getSize() > MAX_SPRITE)
+	if ((oObjects->getSize() > MAX_SPRITE) || (oObjects->getSize() <= 0))
 		return false;
 
 	bool ok = true;
-	int iter(-1);
-
-	oVertexes.resize(oObjects->getSize() * 6);
-	Material *m1 = nullptr;
-
+	int mulc(-1);
+	Material *lastMaterial = nullptr;
 	for (auto obj = oObjects->begin(); obj != oObjects->end(); ++obj)
 	{
 		Sprite *sprite = (*obj);
-		if (sprite != nullptr)
+		if (lastMaterial == nullptr || lastMaterial->getId() != sprite->getMaterial()->getId())
 		{
-			vert lt = sprite->leftTop();
-			vert rd = sprite->rightDown();
-			vert ld; 
-			ld.col = glm::vec4(1, 0, 0.83, 1);
-			ld.pos = glm::vec4(lt.pos.x, rd.pos.y, 0.0, 1.0);
-			ld.uv  = glm::vec2(lt.uv.x, rd.uv.y);
-			vert rt;
-			rt.col = glm::vec4(1, 0, 0.83, 1);
-			rt.pos = glm::vec4(rd.pos.x, lt.pos.y, 0.0, 1.0);
-			rt.uv  = glm::vec2(rd.uv.x, lt.uv.y);
-
-			oVertexes[++iter] = ld;
-			oVertexes[++iter] = rd;
-			oVertexes[++iter] = lt;
-			
-			oVertexes[++iter] = lt;
-			oVertexes[++iter] = rd;
-			oVertexes[++iter] = rt;
-
-			m1 = sprite->getMaterial();
+			++mulc;
+			oRenderObjs.push_back(new Multi());
+			oRenderObjs[mulc]->material = sprite->getMaterial();
+			lastMaterial = sprite->getMaterial();
 		}
+		vert lt = sprite->leftTop();
+		vert rd = sprite->rightDown();
+		vert ld;
+		ld.col = glm::vec4(1, 0, 0.83, 1);
+		ld.pos = glm::vec4(lt.pos.x, rd.pos.y, 0.0, 1.0);
+		ld.uv = glm::vec2(lt.uv.x, rd.uv.y);
+		vert rt;
+		rt.col = glm::vec4(1, 0, 0.83, 1);
+		rt.pos = glm::vec4(rd.pos.x, lt.pos.y, 0.0, 1.0);
+		rt.uv = glm::vec2(rd.uv.x, lt.uv.y);
+
+		oRenderObjs[mulc]->oVertexes.push_back(ld);
+		oRenderObjs[mulc]->oVertexes.push_back(rd);
+		oRenderObjs[mulc]->oVertexes.push_back(lt);
+
+		oRenderObjs[mulc]->oVertexes.push_back(lt);
+		oRenderObjs[mulc]->oVertexes.push_back(rd);
+		oRenderObjs[mulc]->oVertexes.push_back(rt);
 	}
 
-	if (m1 != nullptr)
+	if (oRenderObjs.size() > 0)
 	{
 		begin();
-		m1->setVertexShader("Shaders/vertex.vdr");
-		m1->setFragmentShader("Shaders/fragment.fdr");
-		m1->compile();
-		m1->getMaterialShader()->use();
-		m1->apply(cam);
-		glBindVertexArray(oIdVAO);
+		for (GLuint k(0); k < oRenderObjs.size(); ++k)
+		{
+			oRenderObjs[k]->material->compile();
+			oRenderObjs[k]->material->getMaterialShader()->use();
+			oRenderObjs[k]->material->apply(cam);
+			glBindVertexArray(oIdVAO);
 
-		glBufferSubData(GL_ARRAY_BUFFER, 0, oVertexes.size() * sizeof(vert), oVertexes.data());
+			glBufferSubData(GL_ARRAY_BUFFER, 0, oRenderObjs[k]->oVertexes.size() * sizeof(vert), oRenderObjs[k]->oVertexes.data());
 
-		glDrawArrays(GL_TRIANGLES, 0, oVertexes.size());
+			glDrawArrays(GL_TRIANGLES, 0, oRenderObjs[k]->oVertexes.size());
 
-		glBindVertexArray(0);
-		m1->getMaterialShader()->unuse();
+			glBindVertexArray(0);
+			oRenderObjs[k]->material->getMaterialShader()->unuse();
+		}
 		end();
 	}
 

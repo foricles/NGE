@@ -25,18 +25,18 @@ public:
 	Shader();
 	~Shader();
 
-	void use();
-	void unuse();
-
-	void compile(const std::string &vertexPath, const std::string &fragPath);
-	void link();
+	virtual inline void use();
+	virtual inline void unuse();
+	
+	virtual inline void compile(const std::string &vertexPath, const std::string &fragPath);
+	virtual inline void link();
 	//Атрибут (Attribute) - это данные, передаваемые программой вершинному шейдеру (другим шейдерам данные не доступны)
-	void addAttrib(const std::string &attrib);
-
-	void setUniformF(const std::string &name, float n);
-	void setUniformF(const std::string &name, float x, float y);
-	void setUniformF(const std::string &name, float x, float y, float z);
-	void setUniformF(const std::string &name, float x, float y, float z, float w);
-	void setUniformMatrix4(const std::string &name, const glm::mat4 &matrix);
+	virtual inline void addAttrib(const std::string &attrib);
+	
+	virtual inline void setUniformF(const std::string &name, float n);
+	virtual inline void setUniformF(const std::string &name, float x, float y);
+	virtual inline void setUniformF(const std::string &name, float x, float y, float z);
+	virtual inline void setUniformF(const std::string &name, float x, float y, float z, float w);
+	virtual inline void setUniformMatrix4(const std::string &name, const glm::mat4 &matrix);
 };
 

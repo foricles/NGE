@@ -14,11 +14,13 @@ private:
 	Transform *oTransform;
 public:
 	Sprite();
+	Sprite(Material *material);
 	~Sprite();
 
-	inline void setTransform(const Transform &tra);
-	Transform &transform();
-	Material *getMaterial()const;
+	virtual inline void setTransform(const Transform &tra);
+	virtual inline Transform &transform();
+	virtual inline void setMaterial(Material *mat, bool clr = false);
+	virtual inline Material *getMaterial();
 
 	vert leftTop();
 	vert rightDown();

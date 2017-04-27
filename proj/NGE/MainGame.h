@@ -24,12 +24,12 @@ public:
 	void setGameName(const std::string &name);
 	std::string &getGameName()const;
 
-	EWindow *Window();
-	EInput *Input();
-	ETime *Time();
-	GameObjectManager *gameObject();
+	virtual inline EWindow *Window();
+	virtual inline EInput *Input();
+	virtual inline ETime *Time();
+	virtual inline GameObjectManager *gameObject();
 	
-	void appSystems(std::map<SysType, ESystem*> *sys);
+	virtual inline void appSystems(std::map<SysType, ESystem*> *sys);
 //--------------------------------------------------------
 	// Initialize game
 	virtual bool Initialize();

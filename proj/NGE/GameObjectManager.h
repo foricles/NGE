@@ -3,28 +3,38 @@
 
 #include <vector>
 #include <algorithm>
+#include <algorithm>
 
 #include "System.h"
 #include "Sprite.h"
+#include "Material.h"
 
 class GameObjectManager : public ESystem
 {
 private:
 	std::vector<Sprite*> oGameSprites;
+	std::vector<Material*> oMaterials;
+	static bool cmp(Sprite *a, Sprite *b);
 public:
 	GameObjectManager();
 	~GameObjectManager();
 
-	virtual std::vector<Sprite*>::iterator begin();
-	virtual std::vector<Sprite*>::iterator end();
+	virtual inline std::vector<Sprite*>::iterator begin();
+	virtual inline std::vector<Sprite*>::iterator end();
+	
+	virtual inline RenderObject *getObjectByName(const std::string &name);
+	virtual inline RenderObject *getObjectByTag(const std::string &tag);
+	virtual inline RenderObject *getObjectById(GLuint id);
+	virtual inline RenderObject *getObjectAt(GLuint i);
+	
+	virtual inline Material *getMaterialByTitle(const std::string &name);
+	virtual inline Material *getMaterialById(GLuint id);
+	virtual inline Material *getMaterialAt(GLuint i);
 
-	virtual RenderObject *getObjectByName(const std::string name);
-	virtual RenderObject *getObjectByTag(const std::string tag);
-	virtual RenderObject *getObjectById(GLuint id);
+	virtual inline int getSize() { return oGameSprites.size(); }
 
-	virtual int getSize() { return oGameSprites.size(); }
-
-	virtual Sprite *createSprite();
+	virtual inline Sprite *createSprite();
+	virtual inline Material *createMaterial();
 
 	bool initialize() override;
 	bool reset() override;

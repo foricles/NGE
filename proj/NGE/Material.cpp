@@ -5,6 +5,8 @@ GLuint Material::count = 0;
 Material::Material()
 	: oShader(new Shader())
 	, oWasCompile(false)
+	, oVertexPath("Shaders/v_default.vdr")
+	, oFragmentPath("Shaders/f_default.fdr")
 {
 	oMaterialId = ++count;
 }
@@ -80,14 +82,14 @@ void Material::setTitle(const std::string &title)
 
 void Material::setFragmentShader(const std::string &filePath)
 {
-	if (!oWasCompile)
-		oFragmentPath = filePath;
+	oFragmentPath = filePath;
+	oWasCompile = false;
 }
 
 void Material::setVertexShader(const std::string &filePath)
 {
-	if (!oWasCompile)
-		oVertexPath = filePath;
+	oVertexPath = filePath;
+	oWasCompile = false;
 }
 
 void Material::addUniformAttibute(UniformAttribute * attribute)

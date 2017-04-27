@@ -21,7 +21,13 @@
 class ERender2D : public ESystem
 {
 private:
-	std::vector<vert> oVertexes;
+	struct Multi
+	{
+		Material *material;
+		std::vector<vert> oVertexes;
+		Multi() : material(nullptr) {};
+	};
+	std::vector<Multi*> oRenderObjs;
 
 	glm::vec4 oBackColor;
 	const int MAX_SPRITE = 60000;

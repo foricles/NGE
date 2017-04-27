@@ -7,7 +7,8 @@ class Buber : public EMainGame
 {
 private:
 	UniformVector *vr;
-	Sprite *sp;
+	Sprite		  *sp;
+	Material      *mat;
 public:
 	Buber() 
 	{
@@ -15,20 +16,8 @@ public:
 	}
 	~Buber() {}
 
-	bool Initialize() override
+	inline void createGrid()
 	{
-		setGameName("Buber game");
-		return true;
-	}
-	void Begin() override
-	{
-		//lightPos
-		Logger::Log("begin");
-
-		vr = new UniformVector();
-		vr->uniformName = "lightPos";
-		vr->varCount = 2;
-
 		int N = 26 * 20;
 		float dx = 10;
 		float dy = 10;
@@ -38,7 +27,8 @@ public:
 			sp = gameObject()->createSprite();
 			sp->transform().translate(dx, dy);
 			sp->transform().scale(10, 10);
-			sp->getMaterial()->addUniformAttibute(vr);
+			if (i % 3 == 0)
+				sp->setMaterial(mat);
 			dx += 25;
 			c += 1;
 			if (c == 26)
@@ -49,16 +39,45 @@ public:
 			}
 		}
 	}
+	inline void createBig()
+	{
+		for (int i(0); i < 100; ++i)
+		{
+			sp = gameObject()->createSprite();
+			sp->transform().translate(250, 250);
+			sp->transform().scale(200, 200);
+		}
+	}
+
+	bool Initialize() override
+	{
+		setGameName("Buber game");
+		vr = new UniformVector();
+		vr->uniformName = "lightPos";
+		vr->varCount = 2;
+
+		mat = gameObject()->createMaterial();
+		mat->setFragmentShader("Shaders/f_blue.fdr");
+
+		gameObject()->getMaterialAt(0)->addUniformAttibute(vr);
+		return true;
+	}
+	void Begin() override
+	{
+		createGrid();
+		//createBig();
+	}
 	void Update() override
 	{
-		static int i(0);
+		static double i(0.0);
 
-		if (i%50 == 0)
+		if (i >= 5)
+		{
 			Logger::Log(std::to_string(Time()->fps()));
-		if (i % 20 == 0)
-			vr->var = glm::vec4(rand() % Window()->getWidth(), rand() % Window()->getHeigth(), 0, 0);
-
-		if( ++i == 1000) i = 0;
+			i = 0.0;
+		}
+		vr->var = glm::vec4(Input()->getMousePos().x, Window()->getHeigth() - Input()->getMousePos().y, 0, 0);
+		i += Time()->delaTime();
 	}
 	void End() override
 	{

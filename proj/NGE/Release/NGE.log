@@ -1,9 +1,21 @@
-﻿  MainTest.cpp
-d:\work\projects\nge\proj\nge\Buber.h(14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+﻿  EObject.cpp
+  GameObjectManager.cpp
+  Input.cpp
+  Logger.cpp
+  MainGame.cpp
+  MainTest.cpp
+d:\work\projects\nge\proj\nge\Buber.h(15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Application.cpp
+  Material.cpp
+  Render2D.cpp
+  Shader.cpp
+  Sprite.cpp
+  System.cpp
+  Time.cpp
+  transform.cpp
+  Window.cpp
   Generating code
-  1 of 811 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  All 1041 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   NGE.vcxproj -> D:\Work\projects\NGE\proj\NGE\Release\NGE.exe
   NGE.vcxproj -> D:\Work\projects\NGE\proj\NGE\Release\NGE.pdb (Full PDB)

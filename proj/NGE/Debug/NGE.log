@@ -1,5 +1,19 @@
-﻿  Time.cpp
-  Buber.cpp
+﻿  Window.cpp
+  transform.cpp
+  Time.cpp
+  System.cpp
+  Sprite.cpp
+  Shader.cpp
+  Render2D.cpp
+  Material.cpp
+  Application.cpp
+  MainTest.cpp
+d:\work\projects\nge\proj\nge\buber.h(15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  MainGame.cpp
+  Logger.cpp
+  Input.cpp
+  GameObjectManager.cpp
+  EObject.cpp
   Generating Code...
   NGE.vcxproj -> D:\Work\projects\NGE\proj\NGE\Debug\NGE.exe
   NGE.vcxproj -> D:\Work\projects\NGE\proj\NGE\Debug\NGE.pdb (Partial PDB)

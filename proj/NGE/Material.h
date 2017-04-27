@@ -26,6 +26,12 @@ public:
 	inline Shader *getMaterialShader(){
 		return oShader;
 	}
+	inline GLuint getId(){
+		return oMaterialId;
+	}
+	inline const std::string &getTitle() {
+		return oTitle;
+	}
 private:
 	static GLuint count;
 

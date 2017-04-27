@@ -1,6 +1,5 @@
 d:\work\projects\nge\proj\nge\debug\vc140.pdb
 d:\work\projects\nge\proj\nge\debug\vc140.idb
-d:\work\projects\nge\proj\nge\debug\buber.obj
 d:\work\projects\nge\proj\nge\debug\eobject.obj
 d:\work\projects\nge\proj\nge\debug\gameobjectmanager.obj
 d:\work\projects\nge\proj\nge\debug\input.obj
@@ -13,6 +12,7 @@ d:\work\projects\nge\proj\nge\debug\render2d.obj
 d:\work\projects\nge\proj\nge\debug\shader.obj
 d:\work\projects\nge\proj\nge\debug\sprite.obj
 d:\work\projects\nge\proj\nge\debug\system.obj
+d:\work\projects\nge\proj\nge\debug\time.obj
 d:\work\projects\nge\proj\nge\debug\transform.obj
 d:\work\projects\nge\proj\nge\debug\window.obj
 d:\work\projects\nge\proj\nge\debug\nge.ilk
