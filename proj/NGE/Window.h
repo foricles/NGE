@@ -1,11 +1,12 @@
 #ifndef _WINDOW_H_
 #define _WINDOW_H_
 
-#include <SDL.h>
+#include "System.h"
+
 #include <GLEW\glew.h>
+#include <SDL.h>
 #include <string>
 
-#include "System.h"
 
 class EWindow : public ESystem
 {

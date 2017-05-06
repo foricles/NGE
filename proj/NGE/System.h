@@ -1,13 +1,14 @@
 #ifndef _SYSTEM_H_
 #define _SYSTEM_H_
 
+#include "EObject.h"
+#include "SysEnumers.h"
+#include "Logger.h"
+
 #include <GLEW\glew.h>
 #include <SDL.h>
 #include <map>
 
-#include "EObject.h"
-#include "SysEnumers.h"
-#include "Logger.h"
 
 class ESystem : public EObject
 {

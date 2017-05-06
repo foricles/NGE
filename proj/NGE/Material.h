@@ -14,22 +14,22 @@ public:
 	Material(const std::string &title);
 	~Material();
 
-	void apply(const glm::mat4 &camMatrix);
-	void compile();
+	virtual inline void apply(const glm::mat4 &camMatrix);
+	virtual inline void compile();
 
-	void setTitle(const std::string &title);
-	void setFragmentShader(const std::string &filePath);
-	void setVertexShader(const std::string &filePath);
-	void addUniformAttibute(UniformAttribute* attribute);
-	UniformAttribute *getUniformAttribute(const std::string &attrib);
+	virtual inline void setTitle(const std::string &title);
+	virtual inline void setFragmentShader(const std::string &filePath);
+	virtual inline void setVertexShader(const std::string &filePath);
+	virtual inline void addUniformAttibute(UniformAttribute* attribute);
+	virtual inline UniformAttribute *getUniformAttribute(const std::string &attrib);
 
-	inline Shader *getMaterialShader(){
+	virtual inline Shader *getMaterialShader(){
 		return oShader;
 	}
-	inline GLuint getId(){
+	virtual inline GLuint getId(){
 		return oMaterialId;
 	}
-	inline const std::string &getTitle() {
+	virtual inline const std::string &getTitle() {
 		return oTitle;
 	}
 private:

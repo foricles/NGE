@@ -8,7 +8,6 @@ class Buber : public EMainGame
 private:
 	UniformVector *vr;
 	Sprite		  *sp;
-	Material      *mat;
 public:
 	Buber() 
 	{
@@ -28,7 +27,7 @@ public:
 			sp->transform().translate(dx, dy);
 			sp->transform().scale(10, 10);
 			if (i % 3 == 0)
-				sp->setMaterial(mat);
+				sp->setMaterial(gameObject()->getMaterialAt(1));
 			dx += 25;
 			c += 1;
 			if (c == 26)
@@ -56,6 +55,7 @@ public:
 		vr->uniformName = "lightPos";
 		vr->varCount = 2;
 
+		Material *mat = nullptr;
 		mat = gameObject()->createMaterial();
 		mat->setFragmentShader("Shaders/f_blue.fdr");
 

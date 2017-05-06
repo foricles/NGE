@@ -67,7 +67,7 @@ bool ERender2D::initialize()
 		glEnableVertexAttribArray(2);
 
 		glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(vert), (void*)offsetof(vert, pos));
-		glVertexAttribPointer(1, 4, GL_FLOAT, GL_TRUE, sizeof(vert), (void*)offsetof(vert, col));
+		glVertexAttribPointer(1, 4, GL_FLOAT, GL_TRUE,  sizeof(vert), (void*)offsetof(vert, col));
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vert), (void*)offsetof(vert, uv));
 
 		glBufferData(GL_ARRAY_BUFFER, MAX_VERTEX * sizeof(vert), nullptr, GL_DYNAMIC_DRAW);
@@ -114,7 +114,7 @@ bool ERender2D::update(GameState * state)
 	for (auto obj = oObjects->begin(); obj != oObjects->end(); ++obj)
 	{
 		Sprite *sprite = (*obj);
-		if (lastMaterial == nullptr || lastMaterial->getId() != sprite->getMaterial()->getId())
+		if (lastMaterial == nullptr || lastMaterial != sprite->getMaterial())
 		{
 			++mulc;
 			oRenderObjs.push_back(new Multi());

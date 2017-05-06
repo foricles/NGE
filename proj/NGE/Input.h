@@ -1,8 +1,8 @@
 #ifndef _INPUT_H_
 #define _INPUT_H_
 
-#include <SDL.h>
 #include <GLEW\glew.h>
+#include <SDL.h>
 #include <glm.hpp>
 
 #include "System.h"

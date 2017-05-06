@@ -1,6 +1,14 @@
 #ifndef _RENDER2D_H_
 #define _RENDER2D_H_
 
+#include "Structs.h"
+
+#include "Logger.h"
+#include "System.h"
+#include "Input.h"
+#include "Window.h"
+#include "GameObjectManager.h"
+
 #include <SDL.h>
 #include <GLEW\glew.h>
 #include <glm.hpp>
@@ -10,13 +18,6 @@
 #include <thread>
 #include <mutex>
 
-#include "Structs.h"
-
-#include "Logger.h"
-#include "System.h"
-#include "Input.h"
-#include "Window.h"
-#include "GameObjectManager.h"
 
 class ERender2D : public ESystem
 {
