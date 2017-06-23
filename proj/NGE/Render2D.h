@@ -15,19 +15,34 @@
 #include <gtc\matrix_transform.hpp>
 #include <string>
 #include <time.h>
-#include <thread>
-#include <mutex>
 
+
+struct Multi
+{
+	Material *material;
+	std::vector<vert> oVertexes;
+	Multi() : material(nullptr), quant(6), curr(0) {};
+
+	virtual inline int getVertSize() { return curr; }
+
+	virtual inline void addVer(vert & v)
+	{
+		if (curr % quant == 0)
+		{
+			quant += 96;
+			oVertexes.resize(quant);
+		}
+		oVertexes[curr++] = v;
+	}
+
+private:
+	int quant;
+	int curr;
+};
 
 class ERender2D : public ESystem
 {
 private:
-	struct Multi
-	{
-		Material *material;
-		std::vector<vert> oVertexes;
-		Multi() : material(nullptr) {};
-	};
 	std::vector<Multi*> oRenderObjs;
 
 	glm::vec4 oBackColor;

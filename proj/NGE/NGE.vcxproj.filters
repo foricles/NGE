@@ -4,12 +4,6 @@
     <Filter Include="src">
       <UniqueIdentifier>{851e4b5d-a5b4-490d-b295-133fdffbba56}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\helpers">
-      <UniqueIdentifier>{8d314bbc-c93d-46c1-b7a0-0a9d13df53cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\helpers\logger">
-      <UniqueIdentifier>{d405f98d-ead5-4bd3-9f12-0b2644aa2eb6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\maincode">
       <UniqueIdentifier>{915b5597-be8c-4284-9149-7c5ac0c300ac}</UniqueIdentifier>
     </Filter>
@@ -64,10 +58,16 @@
     <Filter Include="src\maincode\systems\time">
       <UniqueIdentifier>{1494885d-4049-4b0f-80b3-17dacfd1c6be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\heders\helpers">
+      <UniqueIdentifier>{8d314bbc-c93d-46c1-b7a0-0a9d13df53cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\heders\helpers\logger">
+      <UniqueIdentifier>{d405f98d-ead5-4bd3-9f12-0b2644aa2eb6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Logger.cpp">
-      <Filter>src\helpers\logger</Filter>
+      <Filter>src\heders\helpers\logger</Filter>
     </ClCompile>
     <ClCompile Include="EObject.cpp">
       <Filter>src\maincode\eobject</Filter>
@@ -114,7 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Logger.h">
-      <Filter>src\helpers\logger</Filter>
+      <Filter>src\heders\helpers\logger</Filter>
     </ClInclude>
     <ClInclude Include="EObject.h">
       <Filter>src\maincode\eobject</Filter>

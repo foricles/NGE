@@ -10,7 +10,7 @@ Application::Application()
 
 Application::~Application()
 {
-	for (auto sys = oSystems.begin(); sys != oSystems.end(); sys++)
+	for (register auto sys = oSystems.begin(); sys != oSystems.end(); sys++)
 		delete sys->second;
 }
 
@@ -30,7 +30,7 @@ bool Application::init()
 	oSystems.insert(std::pair<SysType, ESystem*>(SysType::OBJMANAGER, new GameObjectManager()));
 	oSystems.insert(std::pair<SysType, ESystem*>(SysType::RENDER, new ERender2D()));
 
-	for (auto sys = oSystems.begin(); sys != oSystems.end(); sys++)
+	for (register auto sys = oSystems.begin(); sys != oSystems.end(); sys++)
 	{
 		sys->second->setAppSystems(&oSystems);
 		sys->second->initialize();
@@ -62,7 +62,7 @@ GLuint Application::mainloop()
 	while (oGameState != GameState::QUIT)
 	{
 		oMainGameClass->Update();
-		for (auto sys = oSystems.begin(); sys != oSystems.end(); sys++)
+		for (register auto sys = oSystems.begin(); sys != oSystems.end(); sys++)
 			sys->second->update(&oGameState);
 		oMainGameClass->PostUpdate();
 	} 

@@ -111,7 +111,7 @@ bool ERender2D::update(GameState * state)
 	bool ok = true;
 	int mulc(-1);
 	Material *lastMaterial = nullptr;
-	for (auto obj = oObjects->begin(); obj != oObjects->end(); ++obj)
+	for (register auto obj = oObjects->begin(); obj != oObjects->end(); ++obj)
 	{
 		Sprite *sprite = (*obj);
 		if (lastMaterial == nullptr || lastMaterial != sprite->getMaterial())
@@ -131,29 +131,29 @@ bool ERender2D::update(GameState * state)
 		rt.col = glm::vec4(1, 0, 0.83, 1);
 		rt.pos = glm::vec4(rd.pos.x, lt.pos.y, 0.0, 1.0);
 		rt.uv = glm::vec2(rd.uv.x, lt.uv.y);
-
-		oRenderObjs[mulc]->oVertexes.push_back(ld);
-		oRenderObjs[mulc]->oVertexes.push_back(rd);
-		oRenderObjs[mulc]->oVertexes.push_back(lt);
-
-		oRenderObjs[mulc]->oVertexes.push_back(lt);
-		oRenderObjs[mulc]->oVertexes.push_back(rd);
-		oRenderObjs[mulc]->oVertexes.push_back(rt);
+ 
+		oRenderObjs[mulc]->addVer(ld);
+		oRenderObjs[mulc]->addVer(rd);
+		oRenderObjs[mulc]->addVer(lt);
+						 
+		oRenderObjs[mulc]->addVer(lt);
+		oRenderObjs[mulc]->addVer(rd);
+		oRenderObjs[mulc]->addVer(rt);
 	}
 
 	if (oRenderObjs.size() > 0)
 	{
 		begin();
-		for (GLuint k(0); k < oRenderObjs.size(); ++k)
+		for (register GLuint k(0); k < oRenderObjs.size(); ++k)
 		{
 			oRenderObjs[k]->material->compile();
 			oRenderObjs[k]->material->getMaterialShader()->use();
 			oRenderObjs[k]->material->apply(cam);
 			glBindVertexArray(oIdVAO);
 
-			glBufferSubData(GL_ARRAY_BUFFER, 0, oRenderObjs[k]->oVertexes.size() * sizeof(vert), oRenderObjs[k]->oVertexes.data());
+			glBufferSubData(GL_ARRAY_BUFFER, 0, oRenderObjs[k]->getVertSize() * sizeof(vert), oRenderObjs[k]->oVertexes.data());
 
-			glDrawArrays(GL_TRIANGLES, 0, oRenderObjs[k]->oVertexes.size());
+			glDrawArrays(GL_TRIANGLES, 0, oRenderObjs[k]->getVertSize());
 
 			glBindVertexArray(0);
 			oRenderObjs[k]->material->getMaterialShader()->unuse();

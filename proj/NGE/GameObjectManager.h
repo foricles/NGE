@@ -14,6 +14,7 @@ class GameObjectManager : public ESystem
 private:
 	std::vector<Sprite*> oGameSprites;
 	std::vector<Material*> oMaterials;
+	std::vector<Sprite*> oFreeSprites;
 	static bool cmp(Sprite *a, Sprite *b);
 public:
 	GameObjectManager();
@@ -34,6 +35,7 @@ public:
 	virtual inline int getSize() { return oGameSprites.size(); }
 
 	virtual inline Sprite *createSprite();
+	virtual inline void deleteSparite(Sprite *sprite);
 	virtual inline Material *createMaterial();
 
 	bool initialize() override;

@@ -1,21 +1,9 @@
-﻿  Window.cpp
-  transform.cpp
-  Time.cpp
-  System.cpp
-  Sprite.cpp
-  Shader.cpp
-  Render2D.cpp
-  Material.cpp
-  Application.cpp
-  MainTest.cpp
-d:\work\projects\nge\proj\nge\buber.h(14): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  MainGame.cpp
-  Logger.cpp
-  Input.cpp
-  GameObjectManager.cpp
-  EObject.cpp
+﻿  Application.cpp
   Создание кода...
-LINK : warning LNK4098: библиотека по умолчанию "LIBCMT" противоречит использованию других библиотек; используйте параметр /NODEFAULTLIB:library
-glew32s.lib(glew.obj) : warning LNK4099: "vc120.pdb" PDB не найден с "glew32s.lib(glew.obj)" или на "D:\Work\projects\NGE\proj\NGE\Debug\vc120.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
-  NGE.vcxproj -> D:\Work\projects\NGE\proj\NGE\Debug\NGE.exe
-  NGE.vcxproj -> D:\Work\projects\NGE\proj\NGE\Debug\NGE.pdb (Partial PDB)
+  Компиляция...
+  Render2D.cpp
+  MainTest.cpp
+d:\work\projects\cpp\nge\proj\nge\buber.h(14): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Создание кода...
+  NGE.vcxproj -> D:\Work\projects\cpp\NGE\proj\NGE\Debug\NGE.exe
+  NGE.vcxproj -> D:\Work\projects\cpp\NGE\proj\NGE\Debug\NGE.pdb (Partial PDB)

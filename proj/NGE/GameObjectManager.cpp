@@ -86,13 +86,25 @@ Material * GameObjectManager::getMaterialAt(GLuint i)
 Sprite * GameObjectManager::createSprite()
 {
 	Sprite *sprite = nullptr;
-	if(sprite == nullptr)
+	if(oFreeSprites.size() == 0)
 	{
 		sprite = new Sprite(oMaterials[0]);
 		oGameSprites.push_back(sprite);
 	}
+	else
+	{
+		sprite = oFreeSprites.back();
+		oFreeSprites.pop_back();
+		oGameSprites.push_back(sprite);
+	}
 	std::stable_sort(oGameSprites.begin(), oGameSprites.end(), cmp);
 	return sprite;
+}
+
+inline void GameObjectManager::deleteSparite(Sprite *sprite)
+{
+	if (sprite != nullptr)
+		oFreeSprites.push_back(sprite);
 }
 
 Material * GameObjectManager::createMaterial()

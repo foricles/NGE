@@ -21,12 +21,12 @@ public:
 		float dx = 10;
 		float dy = 10;
 		int c(0);
-		for (int i(0); i < N; i++)
+		for (register int i(0); i < N; i++)
 		{
 			sp = gameObject()->createSprite();
 			sp->transform().translate(dx, dy);
 			sp->transform().scale(10, 10);
-			if (i % 3 == 0)
+			if (i % ((rand()%5)+1) == 0)
 				sp->setMaterial(gameObject()->getMaterialAt(1));
 			dx += 25;
 			c += 1;
@@ -40,7 +40,7 @@ public:
 	}
 	inline void createBig()
 	{
-		for (int i(0); i < 100; ++i)
+		for (register int i(0); i < 100; ++i)
 		{
 			sp = gameObject()->createSprite();
 			sp->transform().translate(250, 250);
